@@ -26,7 +26,7 @@ class SignUp extends Component {
 
     render() {
         return (
-            <View style = {styles.container}>
+            <View style = {styles.container} >
                 <Text style = {styles.welcome}>
                     Sign Up
                 </Text>
