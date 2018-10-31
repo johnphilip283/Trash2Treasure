@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import styles from 'components/Style';
+import styles from '../style/Style';
 
-class SignUp extends Component {
+export default class SignUp extends Component {
 
     render() {
         return (
@@ -14,6 +14,3 @@ class SignUp extends Component {
         );
     }
 }
-
-
-export default SignUp;
