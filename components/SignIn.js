@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Actions } from 'react-native-router-flux';
-import styles from 'components/Style';
+import styles from '../style/Style';
+import { Actions} from 'react-native-router-flux';
 
-class SignIn extends Component {
+export default class SignIn extends Component {
 
     render() {
         return (
@@ -16,5 +16,3 @@ class SignIn extends Component {
         );
     }
 }
-
-export default SignIn;
