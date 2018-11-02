@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { createDrawerNavigator } from "react-navigation";
-
 import HomeScreen from "./hamburger/HomeScreen";
 import VolunteerScreen from "./hamburger/VolunteerScreen";
+
+import Map from "./components/Map";
+import HorizontalScrollView from "./components/HorizontalScrollView";
 
 export default class App extends Component {
   render() {
@@ -11,12 +13,13 @@ export default class App extends Component {
 }
 
 const MyApp = createDrawerNavigator({
-  "Home Screen": HomeScreen,
-  Settings: HomeScreen,
+  "View Tables": HorizontalScrollView,
+  "View Map": Map,
+  //   "Home Screen": HomeScreen,
   Volunteer: VolunteerScreen,
-  "View Tables": HomeScreen,
-  "View Map": HomeScreen,
-  "Search Tags": HomeScreen,
-  Profile: HomeScreen,
+
+  //   FIXME: implement these later
+  //   "Search Tags": HomeScreen,
+  //   Profile: HomeScreen,
   Upload: HomeScreen
 });

@@ -1,30 +1,23 @@
 import React, { Component } from "react";
-import {
-    View,
-    Text,
-    StyleSheet,
-    Image
-} from "react-native";
-
-//library imports
+import { Text, StyleSheet } from "react-native";
 import { Icon, Container, Header, Content, Left } from 'native-base'
 
-class HomeScreen extends Component {
+export default class HomeScreen extends Component {
 
     render() {
         return (
-
             <Container>
                 <Header>
                     <Left>
                         <Icon name = 'ios-menu'
-                              onPress = {() => this.props.navigation.openDrawer()}>
+                              onPress = {() => this.props.navigation.openDrawer()}
+                                style={styles.menu}>
                         </Icon>
                     </Left>
                 </Header>
 
                 <Content
-                    contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 10 }}>
+                    contentContainerStyle={styles.container}>
                     <Text>Go To Settings Screen</Text>
                 </Content>
             </Container>
@@ -32,12 +25,15 @@ class HomeScreen extends Component {
     }
 }
 
-export default HomeScreen;
-
-
 const styles = StyleSheet.create({
-    icon: {
-        width: 24,
-        height: 24,
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10
     },
+    menu: {
+        paddingHorizontal: 5,
+        paddingVertical: 5
+    }
 });
