@@ -1,11 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import {Dimensions, Image} from 'react-native';
+import { Dimensions, Image } from "react-native";
+
+import HamburgerContainer from "./HamburgerContainer";
 
 export default class Map extends Component {
-    render() {
-        return (
-            <Image style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height}} source={require('../assets/tables.png')}/>
-        );
-    }
+  render() {
+    return (
+      <HamburgerContainer navigation={this.props.navigation} title="Map">
+        <Image
+          style={{ flex: 1, alignSelf: "center" }}
+          source={require("../assets/tables.png")}
+          resizeMode="contain"
+        />
+      </HamburgerContainer>
+    );
+  }
 }
