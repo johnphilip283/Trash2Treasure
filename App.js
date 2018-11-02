@@ -5,6 +5,7 @@ import VolunteerScreen from "./hamburger/VolunteerScreen";
 
 import Map from "./components/Map";
 import HorizontalScrollView from "./components/HorizontalScrollView";
+import NewTablePage from "./components/NewTablePage";
 
 export default class App extends Component {
   render() {
@@ -21,5 +22,5 @@ const MyApp = createDrawerNavigator({
   //   FIXME: implement these later
   //   "Search Tags": HomeScreen,
   //   Profile: HomeScreen,
-  Upload: HomeScreen
+  Upload: NewTablePage
 });
