@@ -26,30 +26,7 @@ const sources = [
 ];
 
 export default class HorizontalScrollView extends Component {
-<<<<<<< Updated upstream
-=======
 
-  constructor() {
-    super();
-
-    this.state = {
-      // FIXME: this should be something other than the indices of the images in the sources list....
-      bookmarks: []
-    };
-  }
-
-  setBookmarkedTable = table => {
-    if (this.state.bookmarks.includes(table)) {
-      this.state.bookmarks = this.state.bookmarks.filter(b => b !== table);
-    } else {
-      this.state.bookmarks.push(table);
-    }
-    this.setState({
-      bookmarks: this.state.bookmarks
-    });
-  };
-
->>>>>>> Stashed changes
   render() {
     const { bookmarks, toggleBookmark } = this.props.screenProps;
 

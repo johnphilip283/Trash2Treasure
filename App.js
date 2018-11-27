@@ -59,6 +59,6 @@ const DrawerApp = createDrawerNavigator({
         //   "Search Tags": HomeScreen,
         //   Profile: HomeScreen,
         Upload: TableStack
-}
+});
 
 
