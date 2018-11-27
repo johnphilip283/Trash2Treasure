@@ -69,7 +69,8 @@ const TableStack = createStackNavigator(
     Camera: MyCamera
   },
   {
-    mode: "modal"
+    mode: "modal",
+    headerMode: "none"
   }
 );
 
@@ -77,7 +78,6 @@ const DrawerApp = createDrawerNavigator({
   "View Tables": HorizontalScrollView,
   "View Map": Map,
   Bookmarks: BookmarksScreen,
-  //   "Home Screen": HomeScreen,
   Volunteer: VolunteerScreen,
   //   FIXME: implement these later
   //   "Search Tags": HomeScreen,
