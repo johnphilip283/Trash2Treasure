@@ -65,7 +65,7 @@ export default class App extends Component {
 
 const TableStack = createStackNavigator(
   {
-    Upload: NewTablePage,
+    "Add Table": NewTablePage,
     Camera: MyCamera
   },
   {
@@ -82,5 +82,5 @@ const DrawerApp = createDrawerNavigator({
   //   FIXME: implement these later
   //   "Search Tags": HomeScreen,
   //   Profile: HomeScreen,
-  Upload: TableStack
+  "Add Table": TableStack
 });

@@ -17,11 +17,11 @@ const screenHeight = Dimensions.get("window").height;
 
 const sources = [
   { img: require("../assets/t2t-img-1.jpg"), tags: ["kitchen", "electronics"] },
-  { img: require("../assets/t2t-img-2.jpg"), tags: ["kitchen", "appliances"] },
   { img: require("../assets/t2t-img-3.jpg"), tags: ["kitchen", "appliances"] },
   { img: require("../assets/t2t-img-4.jpg"), tags: ["kitchen", "appliances"] },
   // { img: require("../assets/t2t-img-5.png"), tags: ["kitchen", "appliances"] },
   { img: require("../assets/t2t-img-6.jpg"), tags: ["sunglasses"] },
+  { img: require("../assets/t2t-img-2.jpg"), tags: ["kitchen", "appliances"] },
   { img: require("../assets/t2t-img-7.jpg"), tags: ["books"] }
 ];
 
