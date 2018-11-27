@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { Icon, Container, Header, Left, Body, Title, Right } from "native-base";
 
 export default class HamburgerContainer extends Component {
+
   render() {
     return (
       <Container>

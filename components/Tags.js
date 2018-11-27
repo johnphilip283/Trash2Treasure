@@ -14,7 +14,7 @@ export default class Tags extends Component {
           this.props.tags.map((data, index) => {
               return(
 
-                  <Button small style={{padding: 5, margin: 5}} key={index}>
+                  <Button small style={{padding: 5, margin: 5}} key={index} disabled={true}>
                     <Text style={{color: 'white'}}>
                         {data}
                     </Text>

@@ -16,21 +16,40 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 const sources = [
-  { img: require("../assets/thor.png"), tags: ["marvel", "superhero"] },
-  { img: require("../assets/deadpool.png"), tags: ["marvel", "superhero"] },
-  {
-    img: require("../assets/doctorstrange.png"),
-    tags: ["marvel", "superhero"]
-  },
-  { img: require("../assets/antman.png"), tags: ["marvel", "superhero"] },
-  {
-    img: require("../assets/captainamerica.png"),
-    tags: ["marvel", "superhero"]
-  },
-  { img: require("../assets/waffle.png"), tags: ["appliances", "kitchen"] }
+    { img: require("../assets/t2t-img-1.jpg"), tags: ["kitchen", "electronics"] },
+    { img: require("../assets/t2t-img-2.jpg"), tags: ["kitchen", "appliances"] },
+    { img: require("../assets/t2t-img-3.jpg"), tags: ["kitchen", "appliances"] },
+    { img: require("../assets/t2t-img-4.jpg"), tags: ["kitchen", "appliances"] },
+    { img: require("../assets/t2t-img-5.png"), tags: ["kitchen", "appliances"] },
+    { img: require("../assets/t2t-img-6.jpg"), tags: ["sunglasses"] },
+    { img: require("../assets/t2t-img-7.jpg"), tags: ["books"] }
 ];
 
 export default class HorizontalScrollView extends Component {
+<<<<<<< Updated upstream
+=======
+
+  constructor() {
+    super();
+
+    this.state = {
+      // FIXME: this should be something other than the indices of the images in the sources list....
+      bookmarks: []
+    };
+  }
+
+  setBookmarkedTable = table => {
+    if (this.state.bookmarks.includes(table)) {
+      this.state.bookmarks = this.state.bookmarks.filter(b => b !== table);
+    } else {
+      this.state.bookmarks.push(table);
+    }
+    this.setState({
+      bookmarks: this.state.bookmarks
+    });
+  };
+
+>>>>>>> Stashed changes
   render() {
     const { bookmarks, toggleBookmark } = this.props.screenProps;
 
@@ -62,7 +81,9 @@ export default class HorizontalScrollView extends Component {
           >
             <Text
               style={{
-                marginTop: 20
+                  marginTop: 20,
+                  fontSize: 25,
+                  paddingBottom: 10
               }}
             >
               Table {index + 1}

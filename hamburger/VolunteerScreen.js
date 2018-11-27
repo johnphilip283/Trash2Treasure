@@ -46,6 +46,7 @@ const yourSlots = ["12:00PM - 1:00PM", "2:00PM - 3:00PM"];
 
 export default class Volunteer extends Component {
   constructor(props) {
+
     super(props);
 
     this.state = {
@@ -67,7 +68,6 @@ export default class Volunteer extends Component {
   };
 
   signUpForSlot = slot => {
-    console.log("Slot " + slot);
     this.setState({
       confirmedSlots: [...this.state.confirmedSlots, slot]
     });
@@ -88,7 +88,7 @@ export default class Volunteer extends Component {
 
           <Row style={styles.row}>
             <Left style={styles.left}>
-              <Text>Date</Text>
+              <Text style={{paddingLeft: 12}}>Date</Text>
             </Left>
             <Right>
               <Picker
