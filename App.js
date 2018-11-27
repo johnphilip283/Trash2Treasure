@@ -14,7 +14,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       bookmarks: [],
-      // {date:<string>, time:<string>}
+      // list of {date:<string>, time:<string>}
       volunteerSlots: []
     };
   }
