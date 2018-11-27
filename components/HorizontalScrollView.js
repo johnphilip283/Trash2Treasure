@@ -31,29 +31,11 @@ const sources = [
 ];
 
 export default class HorizontalScrollView extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      // FIXME: this should be something other than the indices of the images in the sources list....
-      bookmarks: []
-    };
-  }
-
-  setBookmarkedTable = table => {
-    if (this.state.bookmarks.includes(table)) {
-      this.state.bookmarks = this.state.bookmarks.filter(b => b !== table);
-    } else {
-      this.state.bookmarks.push(table);
-    }
-    this.setState({
-      bookmarks: this.state.bookmarks
-    });
-  };
-
   render() {
+    const { bookmarks, toggleBookmark } = this.props.screenProps;
+
     const views = sources.map((data, index) => {
-      const bookmarked = this.state.bookmarks.includes(index);
+      const bookmarked = bookmarks.includes(index);
       return (
         <View
           style={{
@@ -94,7 +76,7 @@ export default class HorizontalScrollView extends Component {
               bordered
               rounded
               active={bookmarked}
-              onPress={() => this.setBookmarkedTable(index)}
+              onPress={() => toggleBookmark(index)}
               style={{ alignSelf: "center", marginBottom: 20 }}
             >
               <Icon active={bookmarked} name="bookmark" />
