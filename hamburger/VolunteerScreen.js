@@ -1,18 +1,12 @@
 import React, { Component } from "react";
-import { StyleSheet, SegmentedControlIOS, View } from "react-native";
+import { StyleSheet, SegmentedControlIOS } from "react-native";
 import {
   Content,
-  Form,
-  Item,
-  DatePicker,
   Picker,
   Icon,
-  Label,
-  Grid,
   Row,
   Col,
   Text,
-  Separator,
   Left,
   Right,
   Body,

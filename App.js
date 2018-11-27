@@ -65,11 +65,12 @@ export default class App extends Component {
 
 const TableStack = createStackNavigator(
   {
-    Upload: NewTablePage,
+    "Add Table": NewTablePage,
     Camera: MyCamera
   },
   {
-    mode: "modal"
+    mode: "modal",
+    headerMode: "none"
   }
 );
 
@@ -77,10 +78,9 @@ const DrawerApp = createDrawerNavigator({
   "View Tables": HorizontalScrollView,
   "View Map": Map,
   Bookmarks: BookmarksScreen,
-  //   "Home Screen": HomeScreen,
   Volunteer: VolunteerScreen,
   //   FIXME: implement these later
   //   "Search Tags": HomeScreen,
   //   Profile: HomeScreen,
-  Upload: TableStack
+  "Add Table": TableStack
 });
