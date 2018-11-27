@@ -26,6 +26,20 @@ const sources = [
 ];
 
 export default class HorizontalScrollView extends Component {
+  constructor(props) {
+    super(props);
+    this.myScroll = null;
+  }
+
+  componentDidMount() {
+    if (this.props.navigation.state.params) {
+      const { id } = this.props.navigation.state.params;
+      if (typeof id !== "undefined") {
+        this.myScroll.scrollTo({ x: id * screenWidth, y: 0, animated: true });
+      }
+    }
+  }
+
   render() {
     const { bookmarks, toggleBookmark } = this.props.screenProps;
 
@@ -85,8 +99,14 @@ export default class HorizontalScrollView extends Component {
 
     return (
       <HamburgerContainer navigation={this.props.navigation} title="Tables">
-        <ScrollView horizontal={true} pagingEnabled={true}>
-          {views}
+        <ScrollView
+          horizontal={true}
+          pagingEnabled={true}
+          ref={ref => {
+            this.myScroll = ref;
+          }}
+        >
+          >{views}
         </ScrollView>
       </HamburgerContainer>
     );
