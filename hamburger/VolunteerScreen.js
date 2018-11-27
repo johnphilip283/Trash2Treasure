@@ -34,25 +34,31 @@ const dateOptions = [
   "Sunday, September 2, 2018",
   "Monday, September 3, 2018"
 ];
-const availableSlots = [
+const slots = [
   "8:00AM - 9:00AM",
   "9:00AM - 10:00AM",
   "10:00AM - 11:00AM",
   "11:00AM - 12:00PM",
+  "12:00PM - 1:00PM",
   "1:00PM - 2:00PM",
+  "2:00PM - 3:00PM",
   "5:00PM - 6:00PM"
 ];
 const yourSlots = ["12:00PM - 1:00PM", "2:00PM - 3:00PM"];
 
 export default class Volunteer extends Component {
   constructor(props) {
-
     super(props);
+
+    yourSlots.forEach(slot => {
+      props.screenProps.editVolunteerSlot(slot, "Thursday, August 30, 2018");
+    });
 
     this.state = {
       selectedView: SIGNUP,
-      date: null,
-      // FIXME
+      date: "Thursday, August 30, 2018",
+      // list of {date:<string>, time:<string>}
+      // TODO this should be a dict of date:<list of times>
       confirmedSlots: []
     };
   }
@@ -67,13 +73,39 @@ export default class Volunteer extends Component {
     this.setState({ date: date });
   };
 
-  signUpForSlot = slot => {
+  signUpForSlot = time => {
+    this.props.screenProps.editVolunteerSlot(time, this.state.date);
     this.setState({
-      confirmedSlots: [...this.state.confirmedSlots, slot]
+      confirmedSlots: [
+        ...this.state.confirmedSlots,
+        { time, date: this.state.date }
+      ]
     });
   };
 
+  removeSlot = ({ date, time }) => {
+    this.props.screenProps.editVolunteerSlot(time, date, false);
+    const idx = this.state.confirmedSlots.findIndex(
+      s => s.date === date && s.time === time
+    );
+    if (idx !== -1) {
+      this.state.confirmedSlots.splice(idx, 1);
+      this.setState({
+        confirmedSlots: this.state.confirmedSlots
+      });
+    }
+  };
+
   render() {
+    const { volunteerSlots } = this.props.screenProps;
+    const confirmedTimesForDate = this.state.confirmedSlots
+      .filter(s => s.date === this.state.date)
+      .map(s => s.time);
+    const availableSlots = slots.filter(
+      slot =>
+        confirmedTimesForDate.includes(slot) ||
+        !volunteerSlots.find(s => s.date === this.state.date && s.time === slot)
+    );
     return (
       <HamburgerContainer navigation={this.props.navigation} title="Volunteer">
         <Content>
@@ -88,7 +120,7 @@ export default class Volunteer extends Component {
 
           <Row style={styles.row}>
             <Left style={styles.left}>
-              <Text style={{paddingLeft: 12}}>Date</Text>
+              <Text style={{ paddingLeft: 12 }}>Date</Text>
             </Left>
             <Right>
               <Picker
@@ -115,7 +147,7 @@ export default class Volunteer extends Component {
                   <Text>{slot}</Text>
                 </Body>
                 <Right style={styles.button}>
-                  {this.state.confirmedSlots.includes(slot) ? (
+                  {confirmedTimesForDate.includes(slot) ? (
                     <Col style={{ flex: 1, alignContent: "center" }}>
                       <Icon
                         name="checkmark-circle"
@@ -139,9 +171,22 @@ export default class Volunteer extends Component {
             <ListItem itemDivider>
               <Text>Your slots</Text>
             </ListItem>
-            {yourSlots.map(slot => (
-              <ListItem key={slot}>
-                <Text>{slot}</Text>
+            {volunteerSlots.map(slot => (
+              <ListItem key={slot.date + slot.time}>
+                <Body>
+                  <Text>{slot.time}</Text>
+                  <Text note>{slot.date}</Text>
+                </Body>
+                <Right>
+                  <Button
+                    small
+                    danger
+                    onPress={() => this.removeSlot(slot)}
+                    accessibilityLabel="Remove this slot"
+                  >
+                    <Icon name="trash" />
+                  </Button>
+                </Right>
               </ListItem>
             ))}
           </List>

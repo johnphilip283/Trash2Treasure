@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { createDrawerNavigator,createStackNavigator} from "react-navigation";
+import { createDrawerNavigator, createStackNavigator } from "react-navigation";
 import BookmarksScreen from "./hamburger/BookmarksScreen";
 
 import VolunteerScreen from "./hamburger/VolunteerScreen";
@@ -13,7 +13,9 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bookmarks: []
+      bookmarks: [],
+      // {date:<string>, time:<string>}
+      volunteerSlots: []
     };
   }
 
@@ -27,27 +29,49 @@ export default class App extends Component {
     this.setState(this.state.bookmarks);
   };
 
+  editVolunteerSlot = (time, date, isAdding = true) => {
+    const idx = this.state.volunteerSlots.findIndex(
+      slot => slot.date === date && slot.time === time
+    );
+
+    if ((isAdding && idx !== -1) || (!isAdding && idx === -1)) {
+      // Do nothng in these cases
+      return;
+    }
+
+    if (idx === -1) {
+      this.state.volunteerSlots.push({ date, time });
+    } else {
+      this.state.volunteerSlots.splice(idx, 1);
+    }
+    this.setState(this.state.volunteerSlots);
+  };
+
   render() {
-    const { bookmarks } = this.state;
+    const { bookmarks, volunteerSlots } = this.state;
 
     return (
       <DrawerApp
-        screenProps={{ bookmarks, toggleBookmark: this.toggleBookmark }}
+        screenProps={{
+          bookmarks,
+          toggleBookmark: this.toggleBookmark,
+          volunteerSlots,
+          editVolunteerSlot: this.editVolunteerSlot
+        }}
       />
     );
   }
 }
 
 const TableStack = createStackNavigator(
-    {
-        Upload: NewTablePage,
-        Camera: MyCamera
-    },
-    {
-        mode: "modal"
-    }
+  {
+    Upload: NewTablePage,
+    Camera: MyCamera
+  },
+  {
+    mode: "modal"
+  }
 );
-
 
 const DrawerApp = createDrawerNavigator({
   "View Tables": HorizontalScrollView,
@@ -55,10 +79,8 @@ const DrawerApp = createDrawerNavigator({
   Bookmarks: BookmarksScreen,
   //   "Home Screen": HomeScreen,
   Volunteer: VolunteerScreen,
-        //   FIXME: implement these later
-        //   "Search Tags": HomeScreen,
-        //   Profile: HomeScreen,
-        Upload: TableStack
+  //   FIXME: implement these later
+  //   "Search Tags": HomeScreen,
+  //   Profile: HomeScreen,
+  Upload: TableStack
 });
-
-
