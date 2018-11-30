@@ -8,6 +8,7 @@ import {
   Text
 } from "react-native";
 import { Row, Button, Icon } from "native-base";
+import PinchZoomView from "react-native-pinch-zoom-view";
 
 import HamburgerContainer from "./HamburgerContainer";
 import Tags from "./Tags";
@@ -57,8 +58,9 @@ export default class HorizontalScrollView extends Component {
           }}
           key={index}
         >
-          <Image source={data.img} style={styles.img} resizeMode="contain" />
-
+          <PinchZoomView minScale={1} style={styles.imgContainer}>
+            <Image source={data.img} style={styles.img} resizeMode="contain" />
+          </PinchZoomView>
           <View
             style={{
               backgroundColor: "#ffffff",
@@ -115,6 +117,11 @@ export default class HorizontalScrollView extends Component {
 
 const styles = StyleSheet.create({
   img: {
+    width: screenWidth,
+    height: screenHeight,
+    flex: 1
+  },
+  imgContainer: {
     width: screenWidth,
     height: screenHeight,
     flex: 1,
