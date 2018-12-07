@@ -9,7 +9,7 @@ import {
   ScrollView,
   Alert
 } from "react-native";
-import { Content, Button, Text, Icon, Item, Input } from "native-base";
+import { Content, Button, Text, Icon, Item, Input, Toast } from "native-base";
 
 import HamburgerContainer from "./HamburgerContainer";
 
@@ -20,17 +20,13 @@ class NewTablePage extends Component {
   }
 
   showSubmitConfirmation = () => {
-    Alert.alert(
-      "Submitted!",
-      "The table has been successfully received and is pending admin approval.",
-      [
-        {
-          text: "OK",
-          style: "cancel",
-          onPress: () => this.props.navigation.navigate("View Tables")
-        }
-      ]
-    );
+    Toast.show({
+      text:
+        "The table has been successfully received and is pending admin approval.",
+      buttonText: "OK",
+      type: "success",
+      duration: 2500
+    });
   };
 
   render() {
