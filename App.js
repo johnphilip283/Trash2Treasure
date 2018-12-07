@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { createDrawerNavigator, createStackNavigator } from "react-navigation";
+import { Root } from "native-base";
 import BookmarksScreen from "./hamburger/BookmarksScreen";
 
 import VolunteerScreen from "./hamburger/VolunteerScreen";
@@ -9,7 +10,7 @@ import HorizontalScrollView from "./components/HorizontalScrollView";
 import NewTablePage from "./components/NewTablePage";
 import MyCamera from "./components/Camera";
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -84,3 +85,9 @@ const DrawerApp = createDrawerNavigator({
   //   Profile: HomeScreen,
   "Add Table": TableStack
 });
+
+export default () => (
+  <Root>
+    <App />
+  </Root>
+);
